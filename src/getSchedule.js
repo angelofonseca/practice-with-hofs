@@ -7,6 +7,7 @@ const getDailyExhibition = (day) => {
       exhibition: 'The zoo will be closed!',
     };
   }
+
   const openingHour = Object.values(data.hours[day])[0];
   const ClosingHour = Object.values(data.hours[day])[1];
   return {
@@ -25,12 +26,9 @@ const getWeekExhibition = () => Object.keys(data.hours).reduce((acc, currDay) =>
 const getSchedule = (scheduleTarget) => {
   const findSpecie = data.species.find((specie) => scheduleTarget === specie.name);
   const findDay = Object.keys(data.hours).find((day) => scheduleTarget === day);
-  if (findSpecie) {
-    return findSpecie.availability;
-  }
-  if (findDay) {
-    return { [scheduleTarget]: getDailyExhibition(scheduleTarget) };
-  }
+
+  if (findSpecie) return findSpecie.availability;
+  if (findDay) return { [scheduleTarget]: getDailyExhibition(scheduleTarget) };
   return getWeekExhibition();
 };
 module.exports = getSchedule;
