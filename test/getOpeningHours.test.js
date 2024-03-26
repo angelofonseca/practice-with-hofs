@@ -34,7 +34,7 @@ describe('Testes da função getOpeningHours', () => {
   it('Verifica condição de aberto e fechado', () => {
     expect(getOpeningHours('Thursday', '09:00-AM')).toBe(closed);
     expect(getOpeningHours('Monday', '12:00-AM')).toBe(closed);
-    expect(getOpeningHours('Thursday', '09:00-AM')).toBe(open);
+    expect(getOpeningHours('Friday', '06:00-PM')).toBe(open);
   });
   it('Retorna o objeto hours quando não é passado parâmetro', () => {
     const expected = {

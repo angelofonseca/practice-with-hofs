@@ -11,7 +11,7 @@ const getSpeciesByLocation = () => {
   }, {});
   return result;
 };
-const mapAnimalNames = (speciesName, options) => {
+const mapSpeciesByOptions = (speciesName, options) => {
   // includesName
   let result = data.species
     .find((specie) => specie.name === speciesName).residents
@@ -34,14 +34,14 @@ const filterSpecies = (options) => {
   // Retorna objeto com informaçoes dos animais
   const result = locations.reduce((acc, location) => {
     acc[location] = data.species
-      .reduce((acc2, specie) => {
+      .reduce((specieAcc, specie) => {
         if (specie.location === location) {
           const obj = {
-            [specie.name]: mapAnimalNames(specie.name, options),
+            [specie.name]: mapSpeciesByOptions(specie.name, options),
           };
-          acc2.push(obj);
+          specieAcc.push(obj);
         }
-        return acc2;
+        return specieAcc;
       }, []);
     return acc;
   }, {});
